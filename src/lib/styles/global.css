@@ -1,20 +1,188 @@
 
 :root{
-	--bg: #f3f6fb;
-	--card: #ffffff;
-	--muted: #6b7280;
-	--accent: #0ea5a4; /* teal */
-	--primary: #2563eb; /* blue */
-	--glass: rgba(255,255,255,0.6);
+	/* Professional medical color palette */
+	--primary: #1F3A5F; /* Dunkles Blau - vertrauenswürdig */
+	--primary-light: #2C5282;
+	--primary-dark: #152840;
+	--secondary: #E8F1FA; /* Helles Blau - sanft */
+	--secondary-dark: #D1E4F7;
+	--accent: #2ECC71; /* Grün - bestätigt */
+	--accent-light: rgba(46,204,113,0.12);
+	--warn: #F5A623; /* Orange - Hinweis */
+	--warn-light: rgba(245,166,35,0.12);
+	--danger: #E74C3C;
+	--danger-light: rgba(231,76,60,0.12);
+	--info: #3498DB;
+	--info-light: rgba(52,152,219,0.12);
+	
+	--bg: #F7F9FC; /* Sehr helles Grau - Hintergrund */
+	--page-bg: #FFFFFF;
+	--card: #FFFFFF;
+	--text: #2E2E2E; /* Dunkles Grau statt Schwarz */
+	--text-light: #6B7280;
+	--muted: #6B7280;
+	--border: rgba(31,58,95,0.08);
+	--shadow: 0 2px 8px rgba(31,58,95,0.08);
+	--shadow-lg: 0 4px 16px rgba(31,58,95,0.12);
+	
+	/* Legacy compatibility */
+	--brand: var(--text);
+	--success: var(--accent);
+	--success-light: var(--accent-light);
 }
 
-html,body,#svelte{height:100%}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;background:var(--bg);color:#0f172a}
-a{color:var(--primary)}
-.container{padding:1rem}
-h1{margin-top:0}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-.card{background:var(--card);box-shadow:0 6px 18px rgba(16,24,40,0.06);border-radius:12px;padding:1rem;border:1px solid rgba(16,24,40,0.04)}
+html,body,#svelte{height:100%;margin:0}
+body{
+	margin:0;
+	font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+	background:var(--bg);
+	color:var(--text);
+	font-size:15px;
+	line-height:1.6;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+a{color:var(--primary);text-decoration:none;transition:color 0.2s ease}
+a:hover{color:var(--primary-light)}
+
+.container{
+	padding:2rem 1.5rem;
+	max-width:1400px;
+	margin:0 auto;
+}
+
+/* Verbesserte Typografie-Hierarchie */
+.page-header{
+	margin-bottom:2.5rem;
+	padding-bottom:1.5rem;
+	border-bottom:2px solid var(--border);
+}
+.page-header h1{
+	font-size:2.25rem;
+	font-weight:700;
+	color:var(--primary);
+	margin:0 0 0.5rem 0;
+	line-height:1.2;
+	letter-spacing:-0.02em;
+}
+.page-header .subtitle{
+	font-size:1rem;
+	color:var(--text-light);
+	margin:0;
+	line-height:1.6;
+	font-weight:400;
+}
+
+h1{
+	font-size:2.25rem;
+	font-weight:700;
+	color:var(--primary);
+	margin:0 0 1.5rem 0;
+	letter-spacing:-0.02em;
+}
+h2{
+	font-size:1.5rem;
+	font-weight:600;
+	color:var(--primary);
+	margin:2rem 0 1rem 0;
+}
+h3{
+	font-size:1.25rem;
+	font-weight:600;
+	color:var(--text);
+	margin:1.5rem 0 0.75rem 0;
+}
+p{margin:0 0 1rem 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.card{
+	background:var(--card);
+	box-shadow:var(--shadow);
+	border-radius:12px;
+	padding:1.5rem;
+	border:1px solid var(--border);
+	transition:all 0.2s ease;
+}
+.card:hover{
+	box-shadow:var(--shadow-lg);
+	border-color:rgba(31,58,95,0.12);
+}
+.section-block{
+	background:var(--secondary);
+	padding:1.5rem;
+	border-radius:12px;
+	margin:1.5rem 0;
+}
+
+/* Buttons */
+.btn-primary{
+	background:var(--primary);
+	color:#fff;
+	border:none;
+	padding:0.625rem 1.25rem;
+	border-radius:8px;
+	cursor:pointer;
+	font-weight:500;
+	font-size:0.95rem;
+	transition:all 0.2s ease;
+}
+.btn-primary:hover{
+	background:var(--primary-light);
+	transform:translateY(-1px);
+	box-shadow:var(--shadow);
+}
+.btn{
+	background:#fff;
+	color:var(--primary);
+	border:1px solid var(--border);
+	padding:0.625rem 1.25rem;
+	border-radius:8px;
+	cursor:pointer;
+	font-weight:500;
+	font-size:0.95rem;
+	transition:all 0.2s ease;
+}
+.btn:hover{
+	background:var(--secondary);
+	border-color:var(--primary);
+}
+
+/* Page wrapper to center content */
+.page-root{width:100%;padding:1.5rem 0;background:var(--section-bg)}
+
+/* Map and chat polish */
+.mapcol.card{padding:0;overflow:hidden;border-radius:12px}
+.mapcol .leaflet-container{height:520px !important}
+.chatbot.card{background:linear-gradient(180deg,#ffffff,#fbfeff)}
+.card h3{color:var(--primary)}
+
+/* center page content and improve spacing for the overview */
+.page-title{font-size:2.2rem;margin:0 0 1rem 0}
+.filters-row{display:flex;gap:1rem;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap}
+
+.layout{ /* center the two-column grid inside the container */
+	display:grid;
+	grid-template-columns: 1fr 420px;
+	gap:1rem;
+	justify-content:center; /* center the whole grid */
+	max-width:1100px;
+	margin:0 auto;
+	padding: 1rem;
+}
+.mapcol{min-height:520px;border-radius:8px;overflow:hidden}
+.listcol{max-width:540px}
+
+@media(max-width:1000px){
+	.layout{grid-template-columns:1fr;}
+	.listcol{max-width:100%}
+}
+
+/* center list cards inside the right column for a nicer centered stack */
+.listcol .cards{
+	max-width:420px; /* keeps the card stack narrow and centered */
+	margin:0 auto;
+	grid-template-columns: 1fr; /* single column cards */
+	gap:1rem;
+}
 .muted{color:var(--muted)}
 
 .btn-primary{background:var(--primary);color:#fff;border:none;padding:0.5rem 0.75rem;border-radius:8px;cursor:pointer}

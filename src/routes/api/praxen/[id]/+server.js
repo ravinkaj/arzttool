@@ -1,11 +1,18 @@
 import { json } from '@sveltejs/kit';
 import { getCollection, toObjectId } from '$lib/db/mongo.js';
+import { marketPraxen, demoOwnerPraxen } from '$lib/db/demoData.js';
 
 export async function GET({ params }) {
   const id = params.id;
+  // Check demo owner practices first
+  let doc = demoOwnerPraxen.find(p => String(p._id) === String(id));
+  if (doc) return json(doc);
+  // Then check market practices
+  doc = marketPraxen.find(p => String(p._id) === String(id));
+  if (doc) return json(doc);
   const col = await getCollection('praxen');
-  const doc = await col.findOne ? await col.findOne({ _id: toObjectId(id) }) : await col.findOne({ _id: id });
-  return json(doc || {});
+  const docDb = await col.findOne ? await col.findOne({ _id: toObjectId(id) }) : await col.findOne({ _id: id });
+  return json(docDb || {});
 }
 
 export async function PUT({ params, request }) {

@@ -1,5 +1,6 @@
 import { json } from '@sveltejs/kit';
 import { getCollection, toObjectId } from '$lib/db/mongo.js';
+import { marketPraxen, demoOwnerPraxen } from '$lib/db/demoData.js';
 
 export async function GET({ url }) {
   const specialty = url.searchParams.get('fach');
@@ -7,24 +8,19 @@ export async function GET({ url }) {
   const sort = url.searchParams.get('sort'); // e.g. wait
   const ownerId = url.searchParams.get('ownerId');
 
-  const col = await getCollection('praxen');
-  let docs;
-  // our fallback collection returns arrays directly for find
-  if (typeof col.find === 'function') {
-    // try to use mongodb cursor if available
-    try {
-      const filter = {};
-      if (specialty) filter.fach = specialty;
-      if (city) filter.city = city;
-      if (ownerId) filter.ownerId = ownerId;
-      const cursor = await col.find(filter).toArray ? await col.find(filter).toArray() : await col.find(filter);
-      docs = cursor;
-    } catch (e) {
-      docs = await col.find({});
-    }
-  } else {
-    docs = await col.find({});
+  // If ownerId is present, return the demo-owner practices (always the same two for demo)
+  if (ownerId) {
+    let docs = demoOwnerPraxen.slice();
+    // allow simple filters for owner view as well
+    if (specialty) docs = docs.filter(d => String(d.fach || '').toLowerCase().includes(String(specialty).toLowerCase()));
+    if (city) docs = docs.filter(d => String(d.city || '').toLowerCase().includes(String(city).toLowerCase()));
+    return json(docs);
   }
+
+  // For patient-facing requests (no ownerId) return the market list
+  let docs = marketPraxen.slice();
+  if (specialty) docs = docs.filter(d => String(d.fach || '').toLowerCase().includes(String(specialty).toLowerCase()));
+  if (city) docs = docs.filter(d => String(d.city || '').toLowerCase().includes(String(city).toLowerCase()));
 
   // simple sorting
   if (sort === 'wait') {

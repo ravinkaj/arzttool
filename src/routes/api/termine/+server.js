@@ -1,10 +1,24 @@
 import { json } from '@sveltejs/kit';
 import { getCollection, toObjectId } from '$lib/db/mongo.js';
+import { demoTermine, demoOwnerPraxen, marketPraxen } from '$lib/db/demoData.js';
 
 export async function GET() {
-  const col = await getCollection('termine');
-  const docs = await col.find ? await col.find({}) : await col.find({});
-  return json(docs);
+  // Demo override: return demo appointments enriched with demo praxis info
+  const docs = demoTermine.slice();
+  const out = docs.map(d => {
+    const praxis = demoOwnerPraxen.find(p => String(p._id) === String(d.praxisId)) || marketPraxen.find(p => String(p._id) === String(d.praxisId));
+    return { ...d,
+      praxisName: praxis?.name || null,
+      praxisWaitMinutes: praxis?.waitMinutes ?? null,
+      praxisFach: praxis?.fach || null,
+      praxisCity: praxis?.city || null,
+      praxisAddress: praxis?.address || null,
+      praxisPhone: praxis?.phone || null,
+      praxisEmail: praxis?.email || null,
+      praxisWebsite: praxis?.website || null
+    };
+  });
+  return json(out);
 }
 
 export async function POST({ request }) {
@@ -18,7 +32,9 @@ export async function POST({ request }) {
     praxisId: payload.praxisId,
     patient: payload.patient,
     time: payload.time,
-    note: payload.note || ''
+    note: payload.note || '',
+    status: payload.status || 'angefragt',
+    createdAt: new Date().toISOString()
   };
   const res = await col.insertOne ? await col.insertOne(toInsert) : await col.insertOne(toInsert);
 

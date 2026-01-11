@@ -28,8 +28,32 @@ if (typeof window !== 'undefined') {
   });
 }
 
-export function login(role = 'patient', userId = null) {
-  const s = { role, userId: userId || (role === 'arzt' ? 'arzt1' : 'user_' + Date.now()) };
+export async function login(role = 'patient', userId = null, password = null) {
+  // If an email/password is provided, try server-side login
+  if (userId && password) {
+    try {
+      const res = await fetch('/api/user', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ action: 'login', email: userId, password }) });
+      const j = await res.json();
+      if (j.ok) {
+        const s = { role: j.role || role, userId: j.userId, name: j.name || null };
+        session.set(s);
+        return s;
+      }
+      throw new Error(j.error || 'Login failed');
+    } catch (e) {
+      throw e;
+    }
+  }
+  const s = { role, userId: userId || (role === 'praxis' ? 'praxis1' : 'user_' + Date.now()), name: null };
+  session.set(s);
+  return s;
+}
+
+export async function register(email, password, role = 'patient', name = null) {
+  const res = await fetch('/api/user', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ action: 'register', email, password, role, name }) });
+  const j = await res.json();
+  if (!j.ok) throw new Error(j.error || 'Registration failed');
+  const s = { role, userId: j.userId || email, name: j.name || null };
   session.set(s);
   return s;
 }
