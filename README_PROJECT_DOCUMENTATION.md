@@ -11,10 +11,11 @@
     - [Decide](#43-decide)
     - [Prototype](#44-prototype)
     - [Validate](#45-validate)
-5. [Erweiterungen [Optional]](#5-erweiterungen-optional)
-6. [Projektorganisation [Optional]](#6-projektorganisation-optional)
+5. [Erweiterungen](#5-erweiterungen)
+6. [Projektorganisation](#6-projektorganisation)
 7. [KI‑Deklaration](#7-ki‑deklaration)
-8. [Anhang [Optional]](#8-anhang-optional)
+
+
 
 
 
@@ -133,7 +134,7 @@
 
 - **Skizzen:**
 
-    <img src="pictures/Crazy-8s.png" alt="Crazy-8s Skizzen" width="550">
+    <img src="pictures/Crazy-8s.png" alt="Crazy-8s Skizzen">
     
     Die Skizzen zeigen unterschiedliche Ausprägungen derselben Kernidee: eine transparente und schnell erfassbare Darstellung von Wartezeiten und verfügbaren Terminen. Unterschiede bestanden insbesondere in der visuellen Gewichtung der Wartezeit (reine Zahl vs. Fortschrittsbalken), der Anordnung der Informationen (Praxisliste vs. Kalenderansicht) sowie im Grad der Interaktivität.
     Auf Basis des erhaltenen Feedbacks aus der Sketch-&-Decide-Phase wurde die Variante einer übersichtlichen Praxisliste mit klar dargestellten Wartezeiten und Terminangaben bevorzugt, da sie den direkten Vergleich mehrerer Praxen am besten unterstützt. Hinweise aus dem Feedback, wie eine stärkere visuelle Hervorhebung der Wartezeit und eine klare Strukturierung der Termine, flossen in die Weiterentwicklung Richtung UI-Prototyp ein.
@@ -148,15 +149,25 @@
 
     Der End-to-End-Workflow beginnt mit der Praxisübersicht, in der Patientinnen und Patienten Praxen nach Fachbereich, Stadt und weiteren Kriterien filtern und vergleichen können. Von dort gelangen sie zur Detailseite einer Praxis mit erweiterten Informationen, geschätzter Wartezeit, Bewertungen und verfügbaren Zeitslots. Anschliessend kann ein Termin gebucht werden. Gebuchte Termine erscheinen in der persönlichen Terminübersicht, wo sie eingesehen, bei Bedarf bearbeitet oder – unter Einhaltung der definierten Regeln – storniert werden können. Für Praxen erstreckt sich der Ablauf vom Dashboard mit Terminübersicht über die Kalenderansicht bis zur gezielten Bearbeitung einzelner Termine sowie der Verwaltung von Praxiseinträgen und Patientendaten. Damit wird ein durchgängiger, rollenbasierter End-to-End-Ablauf abgebildet.
 
+- **Ergänzende Methode: Task-Flow-Analyse (End-to-End Flow Mapping)**
+
+    Ergänzend zur Variantenentscheidung wurde eine Task-Flow-Analyse durchgeführt, um die zentralen End-to-End-Workflows beider Rollen systematisch zu prüfen, bevor sie im High-Fidelity-Prototyp umgesetzt wurden. Ziel dieser Methode war es, den Ablauf aus Nutzersicht in klaren Schritten abzubilden und sicherzustellen, dass alle notwendigen Seiten, Zustände und Aktionen logisch aufeinander aufbauen und ohne unnötige Umwege erreichbar sind.
+
+    Dazu wurden die Kernaufgaben pro Rolle als durchgängige Task-Flows modelliert. Für die Patientinnen- und Patientenrolle umfasste dies insbesondere die Sequenz Praxen finden und filtern, Praxis auswählen, Termin buchen, Termin in der Übersicht verifizieren und den Termin wieder stornieren. Für die Praxisrolle wurde der Ablauf über Dashboard/Kalender, Terminprüfung sowie das Erfassen beziehungsweise Verwalten von Praxiseinträgen betrachtet. Pro Flow wurde überprüft, ob jeder Schritt einen eindeutigen nächsten Schritt besitzt, ob Rücksprünge und Abbrüche nachvollziehbar möglich sind und ob die Navigation konsistent bleibt.
+
+    Die Task-Flow-Analyse diente damit als zusätzliches Planungsartefakt über den reinen Screen-Entwurf hinaus und stellte sicher, dass die späteren Mockups und die technische Umsetzung einen stabilen, bruchfreien Ablauf unterstützen. Gleichzeitig konnten potenzielle Unklarheiten (z. B. Rollenwechsel, Statusübergänge oder die Platzierung zentraler Aktionen) früh erkannt und in der weiteren Ausgestaltung gezielt berücksichtigt werden.
+
+    Das Ergebnis wurde als kompakte Flow-Checkliste (Schrittfolge pro Rolle inkl. notwendiger Zustände und Rücksprünge) dokumentiert und als Referenz für Navigation, Seitenstruktur und Komponentenlogik verwendet.
+
 - **Referenz‑Mockup:**
 
-    <img src="pictures/Mockup-1.png" alt="Mockup 1 – Praxisübersicht" width="550">
+    <img src="pictures/Mockup-1.png" alt="Mockup 1 – Praxisübersicht" width="800">
 
     Der Screen zeigt die Praxisübersicht als zentralen Einstiegspunkt der Anwendung. Patientinnen und Patienten können Arztpraxen über eine freie Suche sowie Filter nach Fachbereich und Stadt eingrenzen und vergleichen. Pro Praxis werden die geschätzte aktuelle Wartezeit, die Anzahl wartender Personen sowie der nächste verfügbare Termin kompakt dargestellt, sodass Unterschiede zwischen Praxen auf einen Blick erkennbar sind. Von dieser Übersicht aus kann direkt zur Detailansicht einer Praxis navigiert werden, womit der gewählte End-to-End-Workflow konsequent gestartet wird.
 
     ---
 
-    <img src="pictures/Mockup-2.png" alt="Mockup 2 – Praxisdetail" width="550">
+    <img src="pictures/Mockup-2.png" alt="Mockup 2 – Praxisdetail" width="800">
 
     Diese Ansicht zeigt die Detailseite einer ausgewählten Arztpraxis. Nutzerinnen und Nutzer erhalten hier eine vertiefte Übersicht über die aktuelle Situation in der Praxis. Zentral dargestellt wird die geschätzte aktuelle Wartezeit, ergänzt durch eine visuelle Fortschrittsanzeige, die den aktuellen Stand im Verhältnis zur durchschnittlichen Wartezeit darstellt. Zusätzlich wird angezeigt, wie viele Patientinnen und Patienten sich aktuell im Warteprozess befinden, um die Situation besser einschätzen zu können.
 
@@ -164,7 +175,7 @@
 
     --- 
     
-    <img src="pictures/Mockup-3.png" alt="Mockup 3 – Terminbestätigung nach Buchung" width="550">
+    <img src="pictures/Mockup-3.png" alt="Mockup 3 – Terminbestätigung nach Buchung" width="800">
 
     Nach Abschluss der Terminbuchung erhalten Nutzerinnen und Nutzer eine eindeutige Rückmeldung, dass der Termin erfolgreich erfasst wurde und der Buchungsvorgang abgeschlossen ist.
 
@@ -174,7 +185,7 @@
 
     ---
     
-    <img src="pictures/Mockup-4.png" alt="Mockup 4 – Terminübersicht" width="550">
+    <img src="pictures/Mockup-4.png" alt="Mockup 4 – Terminübersicht" width="800">
 
     Im Mittelpunkt dieser Ansicht steht die persönliche Terminübersicht der Patientinnen und Patienten. Sie dient der zentralen Verwaltung bereits gebuchter Termine und verknüpft Terminangaben mit der aktuellen Wartezeitsituation.
 
@@ -191,8 +202,8 @@
 
     Für Praxen steht ein eigenes Dashboard zur Verfügung. Dort werden aktuelle und kommende Termine übersichtlich dargestellt und können nach Datum oder Praxis gefiltert werden. Zusätzlich können Praxiseinträge verwaltet und bei Bedarf angepasst werden.
 
-    Damit wird der zentrale Nutzungsablauf für beide Rollen vollständig und ohne Unterbrüche abgebildet..  
-- **Deployment:** _[URL]_  
+    Damit wird der zentrale Nutzungsablauf für beide Rollen vollständig und ohne Unterbrüche abgebildet.  
+- **Deployment:** https://6963e177cc64ed0008238afa--medportal-prototype.netlify.app/
 
 #### 4.4.1. Entwurf (Design)
 - **Informationsarchitektur:** 
@@ -329,19 +340,19 @@
     Die Entwicklung erfolgte in Visual Studio Code als integrierter Entwicklungsumgebung. Für Versionsverwaltung und Nachvollziehbarkeit der Entwicklung wurde Git in Kombination mit GitHub eingesetzt. Der Prototyp wird lokal entwickelt und getestet. Das Deployment erfolgt über Netlify, wodurch der Prototyp als lauffähige Webanwendung bereitgestellt werden kann. Dieser Ansatz erlaubt eine realistische Nutzungssituation, ohne den Fokus auf produktionsreife Infrastruktur zu legen. Der Einsatz von KI-gestützten Entwicklungstools wird transparent im Kapitel KI-Deklaration behandelt.
 - **Struktur & Komponenten:**
 
-  Die Anwendung ist in klar abgegrenzte Seitenbereiche gegliedert, die über das filesystem-basierte Routing von SvelteKit umgesetzt sind. Zentrale Routen umfassen unter anderem **login** (Anmeldung), **profile** (Profilverwaltung), **termine** (Terminübersicht), **praxis** und **arzt** (praxisbezogene Funktionen) sowie **chat** für die unterstützte Praxissuche.  
-  Administrative und serverseitige Funktionen sind in separaten Bereichen (**admin**, **api**) gekapselt. Die Seiten sind logisch nach Nutzungskontexten strukturiert und ermöglichen eine klare Navigation durch die Anwendung. Wiederkehrende UI-Elemente wie Navigation, Listen, Karten und Formulare sind als wiederverwendbare Komponenten organisiert.
+    Die Anwendung ist in klar abgegrenzte Seitenbereiche gegliedert, die über das filesystem-basierte Routing von SvelteKit umgesetzt sind. Zentrale Routen umfassen unter anderem **login** (Anmeldung), **profile** (Profilverwaltung), **termine** (Terminübersicht), **praxis** und **arzt** (praxisbezogene Funktionen) sowie **chat** für die unterstützte Praxissuche.  
+    Administrative und serverseitige Funktionen sind in separaten Bereichen (**admin**, **api**) gekapselt. Die Seiten sind logisch nach Nutzungskontexten strukturiert und ermöglichen eine klare Navigation durch die Anwendung. Wiederkehrende UI-Elemente wie Navigation, Listen, Karten und Formulare sind als wiederverwendbare Komponenten organisiert.
 
 - **Daten & Schnittstellen:**
 
-Der Prototyp arbeitet mit lokal gespeicherten, nicht-produktiven Daten, die ausschliesslich der Darstellung von Benutzeroberfläche und Workflows dienen. Es besteht keine Anbindung an externe APIs oder produktive Backend-Systeme. Serverseitige Logik ist auf einfache interne Endpunkte beschränkt und unterstützt grundlegende Operationen wie das Anzeigen, Erstellen und Aktualisieren von Praxen, Terminen und Profilinformationen. Die Datenmodelle orientieren sich an den zentralen Entitäten des Prototyps und ermöglichen realistische Nutzungsszenarien, ohne unnötige technische Komplexität einzuführen.
+    Der Prototyp arbeitet mit lokal gespeicherten, nicht-produktiven Daten, die ausschliesslich der Darstellung von Benutzeroberfläche und Workflows dienen. Es besteht keine Anbindung an externe APIs oder produktive Backend-Systeme. Serverseitige Logik ist auf einfache interne Endpunkte beschränkt und unterstützt grundlegende Operationen wie das Anzeigen, Erstellen und Aktualisieren von Praxen, Terminen und Profilinformationen. Die Datenmodelle orientieren sich an den zentralen Entitäten des Prototyps und ermöglichen realistische Nutzungsszenarien, ohne unnötige technische Komplexität einzuführen.
 
 - **Besondere Entscheidungen:**
 
-Bei der technischen Umsetzung wurde bewusst ein vereinfachter Ansatz gewählt. Anstelle einer vollständig ausgebauten Backend-Architektur liegt der Fokus auf der klaren Abbildung von Benutzerflüssen, Rollenlogik und Interaktionen. Authentifizierung und Rollensteuerung sind funktional vorhanden, jedoch bewusst reduziert umgesetzt. Diese Entscheidung ermöglicht eine schnelle Iteration und unterstützt das Ziel des Prototyps, typische Nutzungsszenarien realistisch darzustellen, ohne den Schwerpunkt von Gestaltung, Verständlichkeit und Workflow-Logik auf technische Details zu verlagern.
+    Bei der technischen Umsetzung wurde bewusst ein vereinfachter Ansatz gewählt. Anstelle einer vollständig ausgebauten Backend-Architektur liegt der Fokus auf der klaren Abbildung von Benutzerflüssen, Rollenlogik und Interaktionen. Authentifizierung und Rollensteuerung sind funktional vorhanden, jedoch bewusst reduziert umgesetzt. Diese Entscheidung ermöglicht eine schnelle Iteration und unterstützt das Ziel des Prototyps, typische Nutzungsszenarien realistisch darzustellen, ohne den Schwerpunkt von Gestaltung, Verständlichkeit und Workflow-Logik auf technische Details zu verlagern.
 
 ### 4.5 Validate
-- **URL der getesteten Version** https://arzttool1.netlify.app/
+- **URL der getesteten Version:** https://692c51e4cb2fcc74dffe7865--medportal-prototype.netlify.app/
 - **Ziele der Prüfung:** 
 
     Ziel der Evaluation war es zu überprüfen, ob die zentralen Workflows des Prototyps verständlich, durchgängig und ohne erklärende Unterstützung nutzbar sind. Im Fokus standen insbesondere die Auffindbarkeit von Praxen, die Terminbuchung sowie die grundlegenden Verwaltungsfunktionen aus Sicht der Praxisrolle.
@@ -350,6 +361,7 @@ Bei der technischen Umsetzung wurde bewusst ein vereinfachter Ansatz gewählt. A
     Die Evaluation wurde als formative, szenariobasierte Überprüfung durchgeführt. Der Prototyp wurde anhand realistischer Nutzungsszenarien durch mehrere Testpersonen eigenständig durchgeklickt. Dabei wurden typische Aufgaben aus Sicht der beiden Rollen (Patientin/Patient und Praxis) ausgeführt und der Ablauf beobachtet. Die Tests erfolgten remote über die deployte Version.
 
 - **Stichprobe:**
+
     Die Evaluation wurde im Rahmen einer Übung in der Vorlesung durchgeführt. Der Prototyp wurde von insgesamt drei verschiedenen Personen getestet. Die Tests erfolgten jeweils aus Sicht der beiden vorgesehenen Rollen Patientin/Patient sowie Praxis, um die zentralen Nutzungsszenarien und Workflows aus beiden Perspektiven abzudecken.
 
 - **Aufgaben/Szenarien:** 
@@ -366,17 +378,42 @@ Bei der technischen Umsetzung wurde bewusst ein vereinfachter Ansatz gewählt. A
 
 - **Kennzahlen & Beobachtungen:**
 
-    Im Rahmen der Evaluation wurden primär qualitative Beobachtungen festgehalten.
+    Im Rahmen der Evaluation wurden neben qualitativen Beobachtungen auch einfache, prototypentypische Kennzahlen erhoben, um die Durchführbarkeit und Verständlichkeit der zentralen Workflows evidenzbasiert zu beurteilen. Ziel war es nicht, Labor-Messungen vorzunehmen, sondern anhand klarer Indikatoren zu prüfen, ob die vorgesehenen Aufgaben ohne zusätzliche Erklärung erfolgreich, effizient und konsistent ausgeführt werden konnten.
 
-    Während der Tests traten keine technischen Fehler auf, jedoch wurden mehrere qualitative Beobachtungen festgehalten, die auf Optimierungspotenzial in der Benutzerführung hinweisen. Einzelne Testpersonen benötigten zu Beginn einen Moment, um sich zwischen den Rollen Patientin/Patient und Praxis zu orientieren, insbesondere nach dem Login. Hier zeigte sich, dass die aktive Rolle nicht immer sofort eindeutig wahrgenommen wurde.
+    Alle Testpersonen konnten die definierten Kernaufgaben vollständig abschliessen. Sowohl im Patientenszenario (Praxis suchen, filtern, auswählen, Termin buchen, Termin in der Übersicht prüfen und wieder löschen) als auch im Praxisszenario (Terminübersicht aufrufen, Termine prüfen oder filtern sowie eine neue Praxis erfassen) lag die Task-Completion-Rate bei 100 % (3/3 Testpersonen). Abbrüche oder Blocker traten nicht auf (0/3), ebenso keine technischen Fehler oder Seitenabbrüche (0/3). Dies bestätigt, dass die zentralen End-to-End-Workflows funktional tragfähig sind und keine strukturellen Unterbrüche im Ablauf bestehen.
 
-    In der Patientenansicht wurde beobachtet, dass die Vielzahl an Informationen in der Praxisübersicht zwar hilfreich ist, aber auf den ersten Blick leicht überfordernd wirken kann. Testpersonen orientierten sich zunächst an Wartezeiten und Terminen, während andere Informationen erst in einem zweiten Schritt wahrgenommen wurden. Dies verdeutlichte die Bedeutung einer klaren visuellen Gewichtung der wichtigsten Entscheidungsfaktoren.
+    Der Zeitbedarf bewegte sich im erwarteten Rahmen für einen interaktiven High-Fidelity-Prototyp. Das Patientenszenario wurde je nach Testperson in ca. 2–5 Minuten abgeschlossen; das Praxisszenario lag bei ca. 2–4 Minuten. Auffällig war, dass der Zeitaufwand weniger durch die einzelnen Schritte selbst bestimmt wurde, sondern primär durch kurze Orientierungsphasen zu Beginn (insbesondere nach dem Login) sowie beim Wechsel zwischen Rollen. Diese Beobachtung deutet darauf hin, dass der Ablauf grundsätzlich verständlich ist, aber an bestimmten Stellen zusätzliche visuelle Orientierungshilfen sinnvoll sind.
 
-    Bei der Terminbuchung war der Ablauf grundsätzlich verständlich, jedoch wurde vereinzelt erwartet, dass ausgewählte Schritte (Datum, Zeitfenster) visuell stärker bestätigt werden. Dies machte deutlich, dass zusätzliche Rückmeldungen oder Hervorhebungen den Buchungsprozess noch transparenter gestalten könnten.
+    Während der Tests traten vereinzelt Unsicherheiten oder kurze Rückfragen auf. Insgesamt wurden pro Testperson ca. 1–2 kurze Unsicherheitsmomente/Rückfragen beobachtet (z. B. „Bin ich gerade in der Patienten- oder Praxisrolle?“ oder „Wurde die Auswahl von Datum/Zeitfenster bereits übernommen?“). Fehlklicks führten dabei nicht zu Abbrüchen, sondern lediglich zu kurzen Verzögerungen. Technische Fehler, nicht reagierende Bedienelemente oder Fehlermeldungen traten hingegen nicht auf, was auf eine stabile und konsistente Umsetzung des Prototyps hinweist.
 
-    In der Praxisrolle wurde die Terminübersicht als übersichtlich empfunden, allerdings zeigte sich, dass bestimmte Aktionen wie das Bestätigen oder Öffnen von Terminen klarer voneinander abgegrenzt werden könnten. Die Beobachtung unterstrich, wie wichtig eindeutige Aktionsflächen für administrative Aufgaben sind.
+    Inhaltlich liessen sich mehrere zentrale Beobachtungen identifizieren. Ein wesentlicher Punkt betraf die Rollenorientierung nach dem Login: Einzelne Testpersonen benötigten einen kurzen Moment, um eindeutig zu erkennen, ob sie sich aktuell in der Rolle einer Patientin bzw. eines Patienten oder in der Praxisrolle befanden. In der Patientenansicht wurde zudem beobachtet, dass die Praxisübersicht zwar als informativ und hilfreich wahrgenommen wurde, die Informationsdichte beim ersten Blick jedoch leicht überfordernd wirken kann. Testpersonen orientierten sich zunächst primär an Wartezeiten und verfügbaren Terminen, während weitere Informationen erst in einem zweiten Schritt berücksichtigt wurden. Bei der Terminbuchung wurde der Ablauf insgesamt als verständlich eingeschätzt, vereinzelt wurde jedoch erwartet, dass ausgewählte Schritte – insbesondere die Wahl von Datum und Zeitfenster – visuell stärker bestätigt werden. In der Praxisrolle zeigte sich schliesslich, dass Aktionen wie das Bestätigen eines Termins oder das Öffnen von Detailansichten klarer voneinander abgegrenzt werden könnten, um administrative Aufgaben noch eindeutiger und schneller ausführbar zu machen.
 
-    Insgesamt wurde deutlich, dass der Prototyp die zentralen Workflows gut abbildet, die Evaluation jedoch dazu beitrug, das Bewusstsein für Feinheiten in Navigation, Rollenwahrnehmung und visueller Priorisierung zu schärfen
+    Die Kennzahlen und Beobachtungen zeigen insgesamt, dass die zentralen Aufgaben von allen Testpersonen erfolgreich durchgeführt werden konnten und die vorgesehenen Abläufe grundsätzlich verständlich sind. Gleichzeitig traten in einzelnen Situationen kurze Orientierungs- oder Bestätigungsbedarfe auf, die Optimierungspotenzial in der Rollenwahrnehmung, der visuellen Gewichtung von Informationen und der Rückmeldung bei Interaktionen aufzeigen.
+
+- **Ergänzende heuristische Analyse:**
+
+    Ergänzend zur nutzerbasierten Evaluation wurde der Prototyp zusätzlich anhand ausgewählter Usability-Heuristiken überprüft. Ziel dieser heuristischen Analyse war es, potenzielle Schwachstellen in der Benutzerführung auch unabhängig vom konkreten Testverhalten einzelner Testpersonen systematisch zu identifizieren und die Ergebnisse der Nutzertests methodisch abzusichern.
+
+    Die Analyse orientierte sich an etablierten Usability-Prinzipien, insbesondere an den Heuristiken nach Nielsen, und wurde gezielt auf zentrale Interaktionspunkte des Prototyps angewendet. Dazu zählten unter anderem der Login mit Rollenwahl, die Praxisübersicht, der Ablauf der Terminbuchung sowie die administrativen Ansichten der Praxisrolle (Dashboard, Kalender und Terminaktionen).
+
+    Im Fokus standen insbesondere folgende Aspekte:
+
+    - Sichtbarkeit des Systemstatus: Überprüfung, ob Aktionen wie Login, Rollenwechsel, Terminbuchung oder Terminbestätigung durch klare visuelle Rückmeldungen verständlich kommuniziert werden.
+
+    - Konsistenz und Standards: Einheitlichkeit in der Darstellung von Aktionen, Statusanzeigen und Navigationsmustern über verschiedene Ansichten hinweg.
+
+    - Übereinstimmung mit der realen Welt: Verständlichkeit von Begriffen, Rollenbezeichnungen und Abläufen aus Sicht der Nutzerinnen und Nutzer.
+
+    - Wiedererkennung statt Erinnerung: Reduktion der kognitiven Belastung durch konsistente Platzierung von Informationen und eindeutig erkennbare Interaktionselemente.
+
+    Im Rahmen dieser Analyse zeigte sich beispielsweise, dass der Rollenwechsel nach dem Login funktional korrekt umgesetzt ist, jedoch visuell nicht in allen Situationen sofort eindeutig wahrgenommen wird. Diese Beobachtung deckte sich mit den Ergebnissen der Nutzertests, in denen einzelne Testpersonen kurz zögerten, um ihre aktuell aktive Rolle eindeutig zu erkennen. Ebenso wurde bei der Terminbuchung festgestellt, dass ausgewählte Schritte wie die Wahl von Datum und Zeitfenster funktional klar sind, jedoch durch zusätzliche visuelle Bestätigungen noch deutlicher kommuniziert werden könnten.
+
+    In den administrativen Ansichten der Praxisrolle bestätigte die heuristische Analyse zudem den Bedarf nach einer klareren visuellen Abgrenzung einzelner Aktionen, etwa zwischen dem Öffnen von Termindetails und dem Bestätigen oder Absagen von Terminen. Diese Punkte wurden als Optimierungspotenzial identifiziert, obwohl sie nicht zu Fehlbedienungen führten.
+
+    Die Ergebnisse der heuristischen Analyse deckten sich in weiten Teilen mit den Beobachtungen aus der nutzerbasierten Evaluation und bestätigten die dort abgeleiteten Verbesserungsansätze. Durch die Kombination beider Methoden konnte der Prototyp sowohl empirisch (durch Nutzertests) als auch methodisch (durch heuristische Überprüfung) reflektiert werden. Diese ergänzende Methode trug dazu bei, die Weiterentwicklung gezielt zu priorisieren und die Qualität der Benutzerführung systematisch zu erhöhen.
+
+    Die Findings wurden in einer kurzen Heuristik-Checkliste (Prinzip → betroffene Stelle → empfohlene Anpassung) festgehalten und zur Priorisierung der UI-Überarbeitung genutzt.
+
 - **Zusammenfassung der Resultate:**
 
     Die Evaluation machte deutlich, dass die grundlegenden Funktionen und Workflows des Prototyps bereits tragfähig waren. Sowohl die Praxissuche als auch die Terminbuchung und die Terminverwaltung konnten von den Testpersonen grundsätzlich erfolgreich durchgeführt werden. Damit bestätigte sich, dass die konzeptionellen Annahmen zum Ablauf der Kernfunktionen korrekt waren und der Prototyp die zentralen Nutzungsszenarien grundsätzlich abbildet.
@@ -399,6 +436,7 @@ Bei der technischen Umsetzung wurde bewusst ein vereinfachter Ansatz gewählt. A
     Darüber hinaus wurden funktionale Erweiterungen wie der integrierte Chatbot bewusst eingesetzt, um den Einstieg zu erleichtern und komplexere Prozesse wie die Praxissuche niedrigschwelliger zu gestalten. Insgesamt führte diese iterative Überarbeitung dazu, dass der Prototyp nicht nur funktional, sondern auch in Bezug auf Benutzerführung, Klarheit und visuelle Konsistenz deutlich gewonnen hat. Die Unterschiede zwischen der ersten und der überarbeiteten Version sind bewusst sichtbar und unterstreichen den Mehrwert der durchgeführten Evaluation.
 
 ## 5. Erweiterungen
+
 - **Beschreibung & Nutzen:**
 
     Über den definierten Mindestumfang hinaus wurden mehrere funktionale Erweiterungen umgesetzt, um den Prototyp insgesamt attraktiver, benutzerfreundlicher und praxisnäher zu gestalten. Eine zentrale Erweiterung stellt der integrierte Chatbot dar, der Nutzerinnen und Nutzern einen alternativen Einstieg in die Praxissuche ermöglicht und die Orientierung erleichtert.
@@ -409,6 +447,7 @@ Bei der technischen Umsetzung wurde bewusst ein vereinfachter Ansatz gewählt. A
 
     Zusätzlich wurde das Patientenprofil erweitert, sodass weitere Angaben wie das Hochladen einer Krankenkassenkarte möglich sind. Diese Erweiterungen sind für den grundlegenden Workflow nicht zwingend erforderlich, tragen jedoch wesentlich dazu bei, die Benutzerfreundlichkeit, Übersichtlichkeit und Realitätsnähe des Prototyps zu erhöhen.
 - **Umsetzung in Kürze:**
+
     Die Erweiterungen wurden schrittweise im bestehenden Prototyp umgesetzt und in die vorhandene Seiten- und Komponentenstruktur integriert. Neue Funktionen wie der Chatbot, erweiterte Terminübersichten und zusätzliche Praxisansichten wurden als eigenständige Ansichten beziehungsweise Komponenten ergänzt und in die bestehende Navigation eingebunden. Die Darstellung und Logik basieren auf prototypischen Daten und orientieren sich an den bereits vorhandenen Workflows, sodass keine grundlegenden strukturellen Änderungen notwendig waren. Durch diese iterative Umsetzung konnten Erweiterungen gezielt ergänzt werden, ohne die Stabilität oder Verständlichkeit des Prototyps zu beeinträchtigen. 
 - **Abgrenzung zum Mindestumfang:**
 
@@ -426,13 +465,16 @@ Bei der technischen Umsetzung wurde bewusst ein vereinfachter Ansatz gewählt. A
 
     Der definierte Mindestumfang bleibt dabei vollständig erfüllt. Die beschriebenen Funktionen stellen bewusste Erweiterungen dar, die zusätzliche Logik, zusätzliche Ansichten und erweiterte Nutzungsmöglichkeiten abbilden und den Prototyp klar über die geforderten Kernfunktionen hinaus erweitern.
 
-## 6. Projektorganisation [Optional]
-Beispiele:
-- **Repository & Struktur:** _[Link; kurze Strukturübersicht]_  
-- **Issue‑Management:** _[Vorgehen kurz beschreiben]_  
-- **Commit‑Praxis:** _[z. B. sprechende Commits]_
 
-## 7. KI-Deklaration
+## 6. Projektorganisation
+
+- **Repository & Struktur:** https://github.com/ravinkaj/arzttool
+
+    Der Prototyp wurde vollständig über Git versioniert und in einem öffentlichen GitHub-Repository verwaltet. Das Repository dient als zentrale Ablage für Quellcode, Konfigurationsdateien sowie projektbezogene Artefakte. Der Quellcode ist klar strukturiert unter src/ abgelegt, statische Ressourcen befinden sich unter static/, ergänzende Materialien wie Screenshots und Visualisierungen sind in separaten Ordnern (z. B. pictures/) organisiert. Die Projektdokumentation ist ebenfalls direkt im Repository enthalten, sodass Konzeption, Umsetzung und Ergebnis an einem Ort nachvollziehbar sind. Durch diese Struktur ist der Projektstand für Dritte schnell erfassbar und prüfbar.
+- **Issue‑Management:**
+    Für dieses Projekt wurde bewusst auf ein formales Issue-Management mit einzelnen Tickets verzichtet. Stattdessen erfolgte die Aufgabensteuerung entlang der vorgegebenen Phasen der Lehrveranstaltung sowie der definierten Workflows. Anforderungen, offene Punkte und Verbesserungsbedarfe wurden direkt aus den Projektvorgaben sowie aus den Erkenntnissen der Evaluation abgeleitet und anschliessend iterativ umgesetzt. Die Nachvollziehbarkeit dieser Iterationen ist insbesondere im Kapitel Validate gegeben, wo Beobachtungen, abgeleitete Verbesserungen und umgesetzte Anpassungen explizit dokumentiert sind. Damit wurde ein schlanker, aber transparenter Organisationsansatz gewählt, der dem Umfang und Charakter eines Prototyping-Projekts entspricht.
+
+## 7. KI‑Deklaration
 
 ### Eingesetzte KI-Werkzeuge
 Im Rahmen des Projekts wurden folgende KI-Werkzeuge unterstützend eingesetzt:

@@ -139,6 +139,13 @@ export function getSlotsForDate(praxisId, date, bookedSlots = []) {
 				label: `${hh}:${mm}`,
 				time: `${hh}:${mm}`
 			};
+		})
+		.sort((a, b) => {
+			const [aHh, aMm] = a.time.split(':').map(Number);
+			const [bHh, bMm] = b.time.split(':').map(Number);
+			const aTime = aHh * 60 + aMm;
+			const bTime = bHh * 60 + bMm;
+			return aTime - bTime;
 		});
 }
 
